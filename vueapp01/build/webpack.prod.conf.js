@@ -121,6 +121,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       jquery: 'jquery',
       'window.jQuery': 'jquery',
       jQuery: 'jquery'
+    }),
+    new webpack.ProvidePlugin({
+      "d3": "d3",
     })
   ]
 })

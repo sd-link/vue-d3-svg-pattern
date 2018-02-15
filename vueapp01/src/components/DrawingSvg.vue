@@ -159,15 +159,22 @@ export default {
   }
 
   @keyframes double_frm {
-    0% {fill: #ec407a;opacity: 1.0;}
-    25% {fill: white;opacity: 1.0;stroke:#29b6f6;}
-    50% {fill: #29b6f6;opacity: 1.0;}
-    100% {fill: white;opacity: 0.0;stroke:#29b6f6;}
+    0% {fill: #29b6f6; opacity: 1.0;}
+    100% {fill: white; opacity: 0.0;}
   }
   @keyframes single_frm {
     0% {fill: #29b6f6; opacity: 1.0;}
     100% {fill: white; opacity: 0.0;}
   }  
+
+  @-webkit-keyframes double_frm {
+    0% {fill: #29b6f6; opacity: 1.0;}
+    100% {fill: white; opacity: 0.0;}
+  }
+  @-webkit-keyframes single_frm {
+    0% {fill: #29b6f6; opacity: 1.0;}
+    100% {fill: white; opacity: 0.0;}
+  } 
   .pattern-panel {
     position: fixed;
     top: 100px;

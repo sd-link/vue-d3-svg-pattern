@@ -70,24 +70,31 @@ export default {
       var images = require.context('../assets/', false, /\.(png|jpe?g|gif|svg)(\?.*)?$/)
       return images('./' + fn)
     },
+ 
     changePattern (patternId) {
       this.objList[this.selObj].ptnId = patternId
       this.upgradePatternSelection()
+      
+      var over_id = this.objList[this.selObj].id + '_over'
+      d3.select('#'+over_id).classed('run_animation_double', true)
+ 
     },
     setSelectedObject(selectedObjectIndex){
       this.selObj = selectedObjectIndex
       this.upgradePatternSelection()
-      
+     
       var over_id = this.objList[this.selObj].id + '_over'
-      d3.select('#'+over_id).style('opacity', 0.8)
-      setTimeout(function(){
-        d3.select('#'+over_id).style('opacity', 0.0)
-      }, 1000)
-        
+      d3.select('#'+over_id).classed('run_animation_single', true)
+
+
     },
     upgradePatternSelection(){
       $('.selected-item').removeClass('selected-item')
       $('.pattern-' + this.objList[this.selObj].ptnId).addClass('selected-item')
+      setTimeout(function(){
+        $('.run_animation_single').removeClass('run_animation_single')
+        $('.run_animation_double').removeClass('run_animation_double')
+      }, 700)      
     }
   }
 }
@@ -126,15 +133,41 @@ export default {
     cursor: pointer;
   }
   .part:hover{
-    stroke: blue;
+    stroke: #0086c3;
+    opacity: 1.0;
+    stroke-width: 2.5px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;  
   }
   .part_over {
+    mix-blend-mode: multiply;
     opacity: 0.0;
-    fill: blue;
-    -webkit-transition-duration: 0.5s; /* Safari */
-    transition-duration: 0.5s;
+    /* -webkit-transition-duration: 0.2s; /* Safari */
+    /* transition-duration: 0.1s; */
   }
-  
+  .run_animation_single {
+    -webkit-animation-name: single_frm; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-name: single_frm;
+    animation-duration: 0.5s;
+  }
+  .run_animation_double {
+    -webkit-animation-name: double_frm; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
+    animation-name: double_frm;
+    animation-duration: 0.7s;
+  }
+
+  @keyframes double_frm {
+    0% {fill: #ec407a;opacity: 1.0;}
+    25% {fill: white;opacity: 1.0;stroke:#29b6f6;}
+    50% {fill: #29b6f6;opacity: 1.0;}
+    100% {fill: white;opacity: 0.0;stroke:#29b6f6;}
+  }
+  @keyframes single_frm {
+    0% {fill: #29b6f6; opacity: 1.0;}
+    100% {fill: white; opacity: 0.0;}
+  }  
   .pattern-panel {
     position: fixed;
     top: 100px;

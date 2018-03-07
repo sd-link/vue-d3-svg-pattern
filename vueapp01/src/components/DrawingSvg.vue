@@ -213,7 +213,7 @@ export default {
     background-color: bisque;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid gray
+    border: 1px solid gray;
   }
 
  .b{

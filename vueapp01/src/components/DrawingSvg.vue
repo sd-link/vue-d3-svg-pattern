@@ -216,7 +216,9 @@ export default {
     border: 1px solid gray
   }
 
- 
+ .b{
+   border: 1px solid white;
+ }
  
 
  </style>

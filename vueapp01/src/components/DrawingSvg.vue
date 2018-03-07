@@ -194,7 +194,7 @@ export default {
     flex-wrap: wrap;
   }
   .pattern-panel li:hover .pattern-rect{
-    border: 2px solid rgb(0, 38, 255)
+    border: 2px solid blue;
   }
   .pattern-rect {
     width: 3em;
